@@ -19,7 +19,7 @@ const appRoutes: Routes = [
   { path: 'mainpage', component: MainpageComponent },//localhost:4200/mainpage
   { path: 'productlist', component: ProductlistComponent },//localhost:4200/productlist
   { path: 'productadd', component: ProductaddComponent },//localhost:4200/productadd
-  { path: 'productadd/:id', component: ProductaddComponent },//localhost:4200/productadd/5
+  { path: 'productadd/:_id', component: ProductaddComponent },//localhost:4200/productadd/5
   // otherwise redirect to home
   {path: '**', redirectTo: ''}
 ];
