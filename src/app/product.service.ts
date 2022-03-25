@@ -11,34 +11,9 @@ import { Product } from './models';
 })
 export class ProductService {
   //URL for CRUD operations
-  baseUrl = "http://localhost:5000/";
-  apiUrl = this.baseUrl + "api/product";
-  static products: Product[] = []
+  baseUrl = "http://localhost:3000/";
+  apiUrl = this.baseUrl + "api";//Create constructor to get Http instance
 
-  //Fetch all products
-  getProducts(): Observable<Product[]> {
-    return of(ProductService.products);
-  }
-  //Create product
-  createProduct(product: Product): Observable<any> {
-    ProductService.products.push(product);
-    return of(200);
-  }
-  //Fetch product by id
-  getProductById(pid: string): Observable<Product> {
-    return of(ProductService.products.filter((value: Product, _: number, __: Product[]) => value._id == pid)[0]);
-  }
-  //Update product
-  updateProduct(updatedProduct: Product): Observable<any> {
-    return of(ProductService.products.map(product => product._id == updatedProduct._id ? { ...updatedProduct } : product));
-  }
-  //Delete product
-  deleteProductById(pid: string): Observable<any> {
-    ProductService.products = ProductService.products.filter((value: Product, _: number, __: Product[]) => value._id != pid);
-    return of(200);
-  }
- 
-  /*//Create constructor to get Http instance
   constructor(private http: HttpClient) {
   }
   //Fetch all products
@@ -63,5 +38,5 @@ export class ProductService {
   deleteProductById(pid: string): Observable<any> {
     return this.http.delete(this.apiUrl +"/"+ pid, {observe: 'response'})
            .pipe(map(res => res.status))
-  }*/
+  }
 }
