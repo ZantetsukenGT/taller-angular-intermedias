@@ -1,6 +1,6 @@
 <div class="container">
     <h2>Products</h2>
-    <p>Backend RESTful API: http://localhost:5000/api/product</p>
+    <p>Backend RESTful API: http://localhost:3000/api</p>
     <div *ngIf="status || message">
       <alert *ngIf="status != 200" type="danger"></alert>
       <alert *ngIf="status === 200" type="success">Product has been deleted successfully.</alert>
@@ -16,12 +16,12 @@
       </thead>
       <tbody *ngFor="let product of products">
         <tr>
-          <td></td>
-          <td></td>
-          <td><span></span></td>
+          <td>{{ product._id }}</td>
+          <td>{{ product.name }}</td>
+          <td>{{ product.price }}</td>
           <td>
             <button type="button" class="btn btn-success" [routerLink]="['/productadd', product._id ]">Edit</button>
-            <button type="button" class="btn btn-danger" (click)="deleteProduct({ event:$event, id: product._id })">Delete</button>
+            <button type="button" class="btn btn-danger" (click)="deleteProduct({ event:$event, _id: product._id })">Delete</button>
           </td>
         </tr>
       </tbody>
