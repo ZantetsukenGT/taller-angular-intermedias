@@ -3,7 +3,6 @@ import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { Router, ActivatedRoute, Params } from "@angular/router";
  
 import { ProductService } from "../product.service";
-import { v4 as uuidv4 } from 'uuid';
  
 @Component({
   selector: "app-productadd",
@@ -13,11 +12,11 @@ import { v4 as uuidv4 } from 'uuid';
 export class ProductaddComponent implements OnInit {
   status: number = 0;
   message: string = '';
-  _id: any = new FormControl("");
+  _id: string | null = null;
  
   //Create form
   productForm = new FormGroup({
-    _id: new FormControl(""),
+    _id: new FormControl({value: null, disabled: true}),
     name: new FormControl(
       "",
       Validators.compose([Validators.required, Validators.minLength(3)])
@@ -66,12 +65,10 @@ export class ProductaddComponent implements OnInit {
       return; //Validation failed, exit from method.
     }
     //Form is valid, now perform create or update
-    let product = this.productForm.value;
+    let product = this.productForm.getRawValue();
     //console.log(product);
-    if (product._id == null || product._id == "") {
+    if (product._id == null) {
       //Create product
-      product._id = uuidv4();
-      console.log(product._id);
       this.service.createProduct(product).subscribe({
         next: status => {
           this.status = status;

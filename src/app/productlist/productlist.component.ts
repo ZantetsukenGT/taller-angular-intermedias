@@ -33,8 +33,8 @@ export class ProductlistComponent implements OnInit {
  
   deleteProduct(event: any) {
     if (window.confirm("Are you sure to delete this product?")) {
-      //console.log(event.id);
-      this.service.deleteProductById(event.id).subscribe({
+      //console.log(event._id);
+      this.service.deleteProductById(event._id).subscribe({
         next: successCode => {
           this.status = successCode;
           this.getProducts();
